@@ -19,6 +19,7 @@ class VoxelEngine:
         self.ctx = mg.create_context()
 
         self.ctx.enable(flags=mg.DEPTH_TEST | mg.CULL_FACE | mg.BLEND)
+        self.ctx.disable(flags= mg.CULL_FACE)
         self.ctx.gc_mode = 'auto' # auto garbage collec
 
         self.clock = pg.time.Clock()
