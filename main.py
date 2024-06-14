@@ -2,7 +2,7 @@ from settings import *
 import moderngl as mg
 import pygame as pg
 import sys
-from shader import ShaderProgram
+from shader_program import ShaderProgram
 from scene import Scene
 from player import Player
 

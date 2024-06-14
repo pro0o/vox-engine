@@ -6,20 +6,20 @@ class ShaderProgram:
         self.ctx = app.ctx
         self.player = app.player
         
-        # shader program for the quad
-        self.quad = self.get_program(shader_name='quad')
+        # shader program for the chunk
+        self.chunk = self.get_program(shader_name='chunk')
 
         self.set_uniforms_on_init()
 
     def set_uniforms_on_init(self):
         # passing the projection matrix to shader
-        self.quad['m_proj'].write(self.player.m_proj) 
+        self.chunk['m_proj'].write(self.player.m_proj) 
 
         # for the full pic view, also pass the identituy model
-        self.quad['m_model'].write(glm.mat4()) 
+        self.chunk['m_model'].write(glm.mat4()) 
 
     def update(self):
-        self.quad['m_view'].write(self.player.m_view)
+        self.chunk['m_view'].write(self.player.m_view)
 
     def get_program(self, shader_name):
         with open(f'shaders/{shader_name}.vert') as file:
