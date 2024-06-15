@@ -39,4 +39,4 @@ class Player(Camera):
             self.move_up(vel)
 
         if key_state[pg.K_e]:
-            self.move_dowm(vel)
+            self.move_down(vel)
