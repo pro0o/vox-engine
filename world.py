@@ -1,5 +1,9 @@
 from settings import *
 from world_objects.chunk import Chunk
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class World:
     def __init__(self, app):
@@ -16,6 +20,7 @@ class World:
         self.build_chunk_mesh()
 
     def build_chunks(self):
+        logger.info("Building chunks...")
         for x in range(WORLD_W):
             for y in range(WORLD_H):
                 for z in range(WORLD_D):
@@ -26,20 +31,23 @@ class World:
 
                     # now building those chunk voxels
                     self.voxels[chunk_index] = chunk.build_voxels()
-
                     chunk.voxels = self.voxels[chunk_index]
-
+                    logger.debug(f"Chunk at {chunk.position} initialized.")
+        logger.info("Finished building chunks.")
 
     def build_chunk_mesh(self):
-        for chunk in self.chunks:
-            chunk.build_mesh()
+        logger.info("Building chunk meshes...")
+        for i, chunk in enumerate(self.chunks):
+            if chunk is not None:
+                chunk.build_mesh()
+                logger.debug(f"Mesh for chunk {i} built.")
+        logger.info("Finished building chunk meshes.")
 
     def update(self):
         pass
 
     def render(self):
         for chunk in self.chunks:
-            chunk.render()
+            if chunk is not None:
+                chunk.render()
 
-    
-    
