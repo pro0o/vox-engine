@@ -17,6 +17,7 @@ class ShaderProgram:
 
         # for the full pic view, also pass the identituy model
         self.chunk['m_model'].write(glm.mat4()) 
+        self.chunk['u_texture_0']=0
 
     def update(self):
         self.chunk['m_view'].write(self.player.m_view)
